@@ -1,0 +1,7 @@
+curl.exe -X POST http://127.0.0.1:5000/listen -F "file=@test.wav" -o response.json
+
+Get-Content response.json | ConvertFrom-Json | Format-List
+$json = Get-Content response.json | ConvertFrom-Json
+$audioUrl = "http://127.0.0.1:5000" + $json.audio_url
+
+curl.exe $audioUrl -o reply.mp3
